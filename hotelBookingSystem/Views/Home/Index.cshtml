@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@using hotelBookingSystem.Models
+@model IEnumerable<Room>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<section class="section-margin">
+    <div class="container">
+        <div class="section-intro text-center pb-80px">
+            <div class="section-intro__style">
+                <img src="~/bed-icon.png" alt="">
+            </div>
+            <h2>Available Rooms</h2>
+            <hr/>
+        </div>
+
+        <div class="row">
+            
+        @foreach (var item in Model)
+        {
+                <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card card-explore">
+                        <div class="card-explore__img">
+                            <img class="card-img" src="~/RoomImg/@item.Image" alt="">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-explore__price">$@item.Price <sub>/ Per Night</sub></h3>
+                            <h4 class="card-explore__title"><span>@item.branch.Name</span></h4>
+                            <p>@item.roomType.Name </p>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <a class="button home-banner-btn" style="border: 2px solid #cca772;padding: 10px 45px;color:black;"
+                                href="/Rooms/Details/@item.Id">Book Now </a>
+                            }else{
+                                <a class="button home-banner-btn" style="border: 2px solid #cca772;padding: 10px 45px;color:black;"
+                                 href="/Identity/Account/Login">Login and book now </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+        }
+
+            
+        </div>
+    </div>
+</section>
+
+
+

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<hotelBookingSystem.Models.Cart>
+
+@{
+    ViewData["Title"] = "Cart";
+}
+
+
+@foreach (var item in Model)
+{
+    <section class="blog_area" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="blog_left_sidebar">
+                        <article class="row blog_item" style="margin:5 px;">
+                            <div class="col-md-3">
+                                <div class="blog_info text-right" style="padding-top: 30px;text-align: right!important;">
+                                    <ul class="blog_meta list" style="list-style-type: none;margin: 0;padding: 0;">
+                                        
+                                        <li>
+                                            <a style="display: inline-block;color:#777777;vertical-align:middle;padding-bottom:12px;display:inline-block;">
+                                                From @item.FromDate
+                                                <i class="lnr lnr-calendar-full"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a style="display: inline-block;color:#777777;vertical-align:middle;padding-bottom:12px;display:inline-block;">
+                                                To @item.ToDate
+                                                <i class="lnr lnr-calendar-full"></i>
+                                            </a>
+                                        </li>
+                                        
+                                        <li>
+                                            <a style="display: inline-block;color:#777777;vertical-align:middle;padding-bottom:12px;display:inline-block;">
+                                                @item.TotalPrice
+                                                <i class="lnr lnr-bubble"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                             <form a asp-action="Delete" asp-controller="Carts" asp-route-id="@item.Id" method="post">
+                                                <button class="btn btn-outline-danger">Booking Cancel</button>
+                                             </form>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="blog_post">
+                                    <img src="~/RoomImg/@item.room.Image" alt="">
+                                </div>
+                            </div>
+                        </article>
+                        <span style="margin-top:5px"></span>
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+

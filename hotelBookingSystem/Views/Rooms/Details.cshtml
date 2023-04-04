@@ -1,0 +1,67 @@
+﻿@model hotelBookingSystem.Models.Room
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="container">
+    <div>
+        <h4 style="text-align:center">Room Number : @Model.Number</h4>
+        <hr />
+        <div class="col-sm-5" style="float:right">
+            <img src="~/RoomImg/@Model.Image"/>
+        </div>
+        <dl class="row" style="font-size: 1.5rem;font-weight: 500;">
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.Number)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.Number)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-7">
+               $@Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+            @if (Model.Status == true)
+            {
+                <span class="col-sm-7">Avaliable</span>
+            }
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.roomType)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.roomType.Name)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(model => model.branch)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.branch.Name)
+            </dd>
+        </dl>
+    </div>
+    <form asp-action="AddToCart" asp-controller="Carts" asp-route-Id=@Model.Id method="Post">
+        <div class="row">
+            <div class="col-4 float-right">
+                <div class="form-group">
+                    <label class="control-label ">From Date</label>
+                    <input name="FromDate" type="date" class="form-control " />
+                </div>
+                <div class="form-group">
+                    <label class="control-label ">To Date</label>
+                    <input name="ToDate" type="date" class="form-control " />
+                </div>
+                <button type="submit" class="btn btn-primary px-3 m-3">
+                    Book Now
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+

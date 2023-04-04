@@ -1,0 +1,36 @@
+﻿@model IEnumerable<hotelBookingSystem.Models.Room>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<section class="section-margin">
+    <div class="container">
+        <div class="section-intro text-center pb-80px">
+            <h2>All Rooms</h2>
+            <hr/>
+        </div>
+
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                    <div class="card card-explore">
+                        <div class="card-explore__img">
+                            <img class="card-img" src="~/RoomImg/@item.Image" alt="">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-explore__price">$@item.Price <sub>/ Per Night</sub></h3>
+                            <h4 class="card-explore__title"><span>@item.branch.Name</span></h4>
+                            <p>@item.roomType.Name </p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</section>
